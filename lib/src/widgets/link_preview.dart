@@ -203,7 +203,18 @@ class _LinkPreviewGeneratorState extends State<LinkPreviewGenerator> {
   @override
   void initState() {
     super.initState();
+    _updateInfo();
+  }
 
+  @override
+  void didUpdateWidget(covariant LinkPreviewGenerator oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.link != widget.link) {
+      _updateInfo();
+    }
+  }
+
+  void _updateInfo() {
     _url = ((widget.proxyUrl ?? '') + widget.link).trim();
     _info = LinkPreviewAnalyzer.getInfoFromCache(_url) as WebInfo?;
     if (_info == null) {
