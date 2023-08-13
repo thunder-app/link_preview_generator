@@ -20,6 +20,7 @@ class LinkViewSmall extends StatelessWidget {
   final String title;
   final TextStyle? titleTextStyle;
   final String url;
+  final double opacity;
 
   const LinkViewSmall({
     Key? key,
@@ -41,6 +42,7 @@ class LinkViewSmall extends StatelessWidget {
     this.isIcon = false,
     this.bgColor,
     this.radius,
+    this.opacity = 1.0,
   }) : super(key: key);
 
   @override
@@ -80,6 +82,7 @@ class LinkViewSmall extends StatelessWidget {
                             margin: const EdgeInsets.only(right: 5),
                             decoration: BoxDecoration(
                               image: DecorationImage(
+                                opacity: opacity,
                                 image: NetworkImage(imageUri),
                                 fit: isIcon ? BoxFit.contain : graphicFit,
                               ),

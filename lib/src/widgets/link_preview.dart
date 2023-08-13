@@ -105,6 +105,10 @@ class LinkPreviewGenerator extends StatefulWidget {
   /// Pass empty function to disable tap.
   final void Function()? onTap;
 
+  /// Customize the opacity of the image.
+  /// Defaults to `1.0`.
+  final double opacity;
+
   /// Creates [LinkPreviewGenerator]
   const LinkPreviewGenerator({
     Key? key,
@@ -132,6 +136,7 @@ class LinkPreviewGenerator extends StatefulWidget {
     this.borderRadius = 12.0,
     this.boxShadow,
     this.removeElevation = false,
+    this.opacity = 1.0,
   }) : super(key: key);
 
   @override
@@ -270,6 +275,7 @@ class _LinkPreviewGeneratorState extends State<LinkPreviewGenerator> {
                 isIcon: isIcon,
                 bgColor: widget.backgroundColor,
                 radius: widget.borderRadius,
+                opacity: widget.opacity,
               )
             : LinkViewLarge(
                 key: widget.key ?? Key(widget.link.toString()),
@@ -290,6 +296,7 @@ class _LinkPreviewGeneratorState extends State<LinkPreviewGenerator> {
                 isIcon: isIcon,
                 bgColor: widget.backgroundColor,
                 radius: widget.borderRadius,
+                opacity: widget.opacity,
               ),
       ),
     );

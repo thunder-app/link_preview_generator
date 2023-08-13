@@ -20,6 +20,7 @@ class LinkViewLarge extends StatelessWidget {
   final String title;
   final TextStyle? titleTextStyle;
   final String url;
+  final double opacity;
 
   const LinkViewLarge({
     Key? key,
@@ -41,6 +42,7 @@ class LinkViewLarge extends StatelessWidget {
     this.isIcon = false,
     this.bgColor,
     this.radius,
+    this.opacity = 1.0,
   }) : super(key: key);
 
   @override
@@ -86,6 +88,7 @@ class LinkViewLarge extends StatelessWidget {
                                       topRight: Radius.circular(12),
                                     ),
                               image: DecorationImage(
+                                opacity: opacity,
                                 image: NetworkImage(imageUri),
                                 fit: isIcon ? BoxFit.contain : graphicFit,
                               ),
