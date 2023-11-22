@@ -105,6 +105,10 @@ class LinkPreviewGenerator extends StatefulWidget {
   /// Pass empty function to disable tap.
   final void Function()? onTap;
 
+  // When [onTap] is [null], should we use the default handler ([_launchURL])
+  // or have no action whatsoever.
+  final bool useDefaultOnTap;
+
   /// Customize the opacity of the image.
   /// Defaults to `1.0`.
   final double opacity;
@@ -126,6 +130,7 @@ class LinkPreviewGenerator extends StatefulWidget {
     this.bodyMaxLines,
     this.bodyTextOverflow = TextOverflow.ellipsis,
     this.onTap,
+    this.useDefaultOnTap = false,
     this.placeholderWidget,
     this.proxyUrl,
     this.errorWidget,
@@ -254,7 +259,9 @@ class _LinkPreviewGeneratorState extends State<LinkPreviewGenerator> {
       ),
       height: _height,
       child: InkWell(
-        onTap: widget.onTap ?? () => _launchURL(widget.link),
+        borderRadius: BorderRadius.circular(widget.borderRadius),
+        onTap: widget.onTap ??
+            (widget.useDefaultOnTap ? () => _launchURL(widget.link) : null),
         child: (widget.linkPreviewStyle == LinkPreviewStyle.small)
             ? LinkViewSmall(
                 key: widget.key ?? Key(widget.link.toString()),
